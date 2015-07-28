@@ -1,21 +1,29 @@
 # -*- coding: utf-8 -*-
 
+import logging
+from time import time
+
 # shared tracker agent instance
 agent = None
+_logger = logging.getLogger('method_timer')
 
-from time import time
 
 class Tracker(object):
 
     def __init__(self, connector):
+        _logger.info('method_timer agent instantiated with %s connector',
+                     connector.__class__.__name__)
         self.connector = connector
+        self.configured = False
 
     def configure(self, callee, warning, critical):
         """
-        Configure thresholds
+        Configure thresholds once
         """
-        self.connector.configure(callee.__module__, callee.__name__,
-                                 warning, critical)
+        if not self.configured:
+            self.connector.configure(callee.__module__, callee.__name__,
+                                     warning, critical)
+            self.configured = True
 
     def record(self, callee, args, kw, warning=None, critical=None):
         """

@@ -11,7 +11,7 @@ class Connector(object):
     """
 
     def __init__(self):
-        self.log = logging.getLogger('connector')
+        self.log = logging.getLogger('method_timer')
 
     def configure(self, module, method, warning, critical):
         """

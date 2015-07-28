@@ -22,6 +22,7 @@ class LogConnector(Connector):
             'warning': warning,
             'critical': critical
         })
+        self.log.info('Record method response time in log')
 
     def commit(self, record):
         """
