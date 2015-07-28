@@ -18,10 +18,10 @@ class LogConnector(Connector):
         """
         Configure thresholds
         """
-        self.thresholds['%s:%s' % (module, method)].append({
+        self.thresholds['%s:%s' % (module, method)] = {
             'warning': warning,
             'critical': critical
-        })
+        }
         self.log.info('Record method response time in log')
 
     def commit(self, record):
