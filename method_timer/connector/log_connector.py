@@ -31,9 +31,9 @@ class LogConnector(Connector):
         level = logging.INFO
 
         th = self.thresholds.get(record.key())
-        if th and th['warning'] and self.duration() > th['warning']:
+        if th and th['warning'] and record.duration() > th['warning']:
             level = logging.WARNING
-        if th and th['critical'] and self.duration() > th['critical']:
+        if th and th['critical'] and record.duration() > th['critical']:
             level = logging.CRITICAL
 
         self.log.log(level, 'method %s was running during %s second(s)',
