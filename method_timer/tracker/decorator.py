@@ -5,7 +5,7 @@ from functools import wraps
 
 from openerp.addons.method_timer.tracker import tracker
 
-_logger = logging.getLogger('tracker')
+_logger = logging.getLogger('method_timer')
 
 
 def track(warning=None, critical=None):
@@ -14,13 +14,13 @@ def track(warning=None, critical=None):
     warning and critical can be used to set threshold value in second
     """
     def decorator(func):
-        if tracker.agent and warning or critical:
-            tracker.agent.configure(func, warning, critical)
 
         @wraps(func)
         def wrapper(*args, **kw):
             if tracker.agent:
                 _logger.debug('record %s response time', func)
+                if warning or critical:
+                    tracker.agent.configure(func, warning, critical)
                 return tracker.agent.record(func, args, kw)
             else:
                 _logger.debug('tracking agent not instantiated')
