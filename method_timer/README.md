@@ -61,6 +61,9 @@ a [Redis][redis] database, then an external tool can extract useful information.
 For example, a [Check MK plugin][ck_method_timer] exists to method execution time
 displayed as chart on Check MK interface.
 
+Look at [how to setup local checks on Check MK][ck_timer_setup] to make metrics
+available on Check MK.
+
 #### Configuration
 
 ```
@@ -100,10 +103,9 @@ tracker_connector_foo_param2 = foobar
 ```
 
 
-
-
  [redis]: http://redis.io/
- [ck_method_timer]: https://gitlab.trobz.com/sysadmin/check_mk-agent/blob/master/plugins/openerp_method_timer
+ [ck_method_timer]: https://gitlab.trobz.com/sysadmin/check_mk-agent/blob/master/local/openerp_method_timer
+ [ck_timer_setup]: https://sites.google.com/a/trobz.com/sysadmin/configuration/monitoring/check-mk-setup-local-checks
  [LC]: connector/log_connector.py
  [R]: tracker/record.py
  [CF]: connector/core.py
